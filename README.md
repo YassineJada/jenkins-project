@@ -26,7 +26,7 @@ The Cloudinary CRUD operations MERN stack application is a web project designed 
 - Cloudinary integration for image management
 - User-friendly interface built with React.js
 - Efficient image storage and retrieval with MongoDB
-
+- Streamlined image handling for web applications
 
 ## Why I chose this Project
 
