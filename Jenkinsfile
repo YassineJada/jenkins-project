@@ -2,7 +2,6 @@ pipeline {
     agent any
 
     stages {
-       //ezeze
         stage('Docker Build') {
             steps {
                 script {
