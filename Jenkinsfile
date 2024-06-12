@@ -1,20 +1,25 @@
 pipeline {
-    agent none
+    agent any
     stages {
-        stage('Back-end') {
+        stage('Docker Compose') {
             agent {
-                docker { image 'maven:3.9.7-eclipse-temurin-17-alpine' }
+                docker { image 'docker:latest' }
             }
             steps {
-                sh 'mvn --version'
+                script {
+                    sh 'docker-compose up -d'
+                }
             }
         }
-        stage('Front-end') {
+        stage('Push to Docker Hub') {
             agent {
-                docker { image 'node:20.11.1-alpine3.19' }
+                docker { image 'docker:latest' }
             }
             steps {
-                sh 'node --version'
+                script {
+                    sh 'docker login -u jada01 -p oussama123'
+                    sh 'docker-compose push'
+                }
             }
         }
     }
