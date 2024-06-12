@@ -28,7 +28,7 @@ The Cloudinary CRUD operations MERN stack application is a web project designed 
 - Efficient image storage and retrieval with MongoDB
 - Streamlined image handling for web applications
 
-## Why I chose this Project
+## Why I chose this Projec
 
 I decided to work on the Cloudinary CRUD operations MERN stack application for several reasons. Firstly, it provided a hands-on opportunity to understand the practical aspects of image management in web applications. This project allowed me to enhance my skills in creating, updating, and deleting images—essential skills for a developer.
 
