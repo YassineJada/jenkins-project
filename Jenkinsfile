@@ -1,24 +1,35 @@
 pipeline {
     agent any
+
     stages {
-        stage('Docker Compose') {
-            agent {
-                docker { image 'docker:latest' }
-            }
+       
+        stage('Docker Build') {
             steps {
                 script {
-                    sh 'docker-compose up -d'
+                    bat 'docker build -t server:latest ./server'
+                    bat 'docker build -t client:latest ./client'                
                 }
             }
         }
-        stage('Push to Docker Hub') {
-            agent {
-                docker { image 'docker:latest' }
-            }
+       
+        stage('Docker Push client') {
             steps {
                 script {
-                    sh 'docker login -u jada01 -p oussama123'
-                    sh 'docker-compose push'
+                    docker.withRegistry('https://index.docker.io/v1/', 'docker-repo'){
+                        bat 'docker tag client:latest jada01/front_end'
+                        bat 'docker push jada01/front_end'
+                    }
+                }
+            }
+        }
+       
+        stage ('Docker Push server') {
+            steps {
+                script {
+                    docker.withRegistry('https://index.docker.io/v1/', 'docker-repo') {
+                        bat 'docker tag server:latest jada01/back_end'
+                        bat 'docker push jada01/back_end'
+                    }
                 }
             }
         }
